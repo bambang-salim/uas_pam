@@ -30,11 +30,13 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
         this.list = list;
         this.listIndo = listIndo;
     }
+//    pembuatan class adapter surah
 
     public SurahAdapter(Context context, List<Surah> list) {
         this.context = context;
         this.list = list;
     }
+//    pembuatan adapter list surah
 
     @NonNull
     @Override
@@ -43,6 +45,7 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
         view = LayoutInflater.from(context).inflate(R.layout.item_row, parent, false);
         return new Holder(view);
     }
+//    pembuatan holder surah
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -69,6 +72,7 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
 
             }
         });
+//        penampungan holder surah dan pemamggilan data dari API
     }
 
     @Override
@@ -89,4 +93,5 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
             ayatSize = itemView.findViewById(R.id.ayat_size);
         }
     }
+//    penggunaan holder dari penampungn agar bisa di panggil dari API
 }

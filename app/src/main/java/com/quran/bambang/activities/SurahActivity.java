@@ -22,37 +22,46 @@ public class SurahActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        pebuatan bundle save pada oncreate
         super.onCreate(savedInstanceState);
+//        pemanggilan kelas oncreate
         setContentView(R.layout.activity_surah_content);
+//        konten view surah
 
         Toolbar mToolbarSurah = findViewById(R.id.mToolbarSurah);
+//        fungsi pencarian surah
         setSupportActionBar(mToolbarSurah);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        pembuatan scroll
 
         String json = getIntent().getStringExtra("jsonlist");
         String jsonIndo = getIntent().getStringExtra("jsonlistIndo");
         String jsonTitle = getIntent().getStringExtra("jsonTitle");
         Type type = new TypeToken<List<Ayat>>() {
         }.getType();
+//        pengambilan data Json retrofit
 
         TextView txtTitleSurah = findViewById(R.id.txtTitleSurah);
         txtTitleSurah.setText(jsonTitle);
         txtTitleSurah.findViewById(R.id.txtTitleSurah);
         txtTitleSurah.setText(jsonTitle);
+//        penampilan title surah
 
         Gson gson = new Gson();
         List<Ayat> ayatList = gson.fromJson(json, type);
         List<Ayat> ayatListIndo = gson.fromJson(jsonIndo, type);
+//        parsing json
 
         RecyclerView recyclerAyat = findViewById(R.id.ayat_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         AyatAdapter ayatAdapter = new AyatAdapter(this, ayatList, ayatListIndo);
+//        pemanggilan ayat dari retrofit
         recyclerAyat.setLayoutManager(layoutManager);
         recyclerAyat.setHasFixedSize(true);
         recyclerAyat.setAdapter(ayatAdapter);
-
+//        layot ayat setelah di panggil
     }
 
     @Override

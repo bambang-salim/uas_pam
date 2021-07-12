@@ -28,9 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String arabic = "quran-uthmani";
     private static final String indo = "id.indonesian";
+//    pembuatan class final untuk jenis tulisan dan bahasa
 
     private List<Surah> surahsArabic = new ArrayList<>();
     private List<Surah> surahsIndo = new ArrayList<>();
+//    class untuk surah dan terjemahan
 
     ProgressDialog loadingData;
 
@@ -43,19 +45,27 @@ public class MainActivity extends AppCompatActivity {
         loadingData.setTitle("Mohon tunggu...");
         loadingData.setCancelable(false);
         loadingData.setMessage("Sedang mengambil data dari API");
+//        proses loading
 
         RecyclerView recyclerSurah = findViewById(R.id.surah_list);
+//        penapilan surah secara list scrolldown
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        penyusunan surah
         recyclerSurah.setHasFixedSize(true);
+//        pembuatan ukuran
         recyclerSurah.setLayoutManager(layoutManager);
+//        pembuatan layout susai layoutmanager
 
         ApiInterface apiInterface = ApiClient.getRetrofit().create(ApiInterface.class);
+//        pengambilan API
 
         Call<Cek> call = apiInterface.getCek(arabic);
         Call<Cek> callIndo = apiInterface.getCek(indo);
+//        pemaggilan API
 
         getDataListArabic(recyclerSurah, call);
         getDataTarjim(callIndo);
+//        pengambilan data dari API
     }
 
     private void getDataTarjim(Call<Cek> callIndo) {
@@ -66,12 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 surahsIndo = data.getSurahs();
 
             }
+//            pemanggilan terjemahan
 
             @Override
             public void onFailure(Call<Cek> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "gagal", Toast.LENGTH_SHORT).show();
                 Log.d("error", t.getMessage());
             }
+//            respon jika gagal
         });
     }
 
@@ -82,10 +94,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Cek> call, Response<Cek> response) {
                 Data data = response.body().getData();
                 surahsArabic = data.getSurahs();
-
+//                pemanggilan surah
                 SurahAdapter surahAdapter = new SurahAdapter(MainActivity.this, surahsArabic, surahsIndo);
                 recyclerSurah.setAdapter(surahAdapter);
                 loadingData.dismiss();
+//                penggunaan adapter retrofit
             }
 
             @Override
@@ -93,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 loadingData.dismiss();
                 Toast.makeText(MainActivity.this, "gagal", Toast.LENGTH_SHORT).show();
                 Log.d("error", t.getMessage());
+//                respon jika eror
             }
         });
     }

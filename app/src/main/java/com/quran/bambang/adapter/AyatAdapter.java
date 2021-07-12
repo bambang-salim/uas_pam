@@ -25,6 +25,7 @@ public class AyatAdapter extends RecyclerView.Adapter<AyatAdapter.Holder> {
         this.list = list;
         this.listIndo = listIndo;
     }
+//    pembuatan class untuk adapter
 
     @NonNull
     @Override
@@ -33,6 +34,7 @@ public class AyatAdapter extends RecyclerView.Adapter<AyatAdapter.Holder> {
         View view = LayoutInflater.from(context).inflate(R.layout.item_ayat, parent, false);
         return new Holder(view);
     }
+//    class pembautan holder ayat
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
@@ -42,6 +44,7 @@ public class AyatAdapter extends RecyclerView.Adapter<AyatAdapter.Holder> {
         holder.arabic.setText(ayat.getText());
         holder.tarjim.setText(ayatIndo.getText());
     }
+//    penambungan holder ayat
 
     @Override
     public int getItemCount() {
@@ -58,4 +61,5 @@ public class AyatAdapter extends RecyclerView.Adapter<AyatAdapter.Holder> {
             tarjim = itemView.findViewById(R.id.tarjim);
         }
     }
+//    class untuk menapilkan holder
 }
